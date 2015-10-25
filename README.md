@@ -1,8 +1,23 @@
 # flower
+###a tumblr theme
 
-*You... IDIOT.*
+>*You... IDIOT.*
 
-Coming soon.
+![Screenshot](http://i.imgur.com/MhuZCyb.png)
+
+A Tumblr theme based off of Undertale, a game that I've been obsessed with for a few weeks now.
+
+###what it do 
+
+ - make your tumblr page look like something ripped from the game
+ - be super cool and load quickly thanks to CDNs and stuff
+ - be open source and awesome
+
+###what it don't
+
+ - give you a goat mom ;_;
+
+flower is licensed under MIT.
 
 <3,
 Taco

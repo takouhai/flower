@@ -38,8 +38,34 @@ Year: 2015
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style>
+    /* body thing */
+    
     body {
         background: #000;
+        font-family: '8bitoperator', sans-serif;
+        color: #fff;
+    }
+    /* zeldas */
+    
+    a {
+        color: #FF7F27;
+    }
+    
+    a:hover {
+        color: #FF7F27;
+    }
+    
+    a:visited {
+        color: #FF7F27;
+    }
+    /* font thing */
+    
+    @font-face {
+        font-family: '8bitoperator';
+        font-style: normal;
+        font-weight: 400;
+        src: local('8bitoperator'), local('8bitoperator'), url(https://cdn.rawgit.com/thattacoguy/flower/master/8bitoperator.ttf) format('ttf');
+        unicode-range: U+0000-00FF, U+0131, U+0142-0143, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2214, U+E0FF, U+EFFD, U+F000;
     }
     /* gives space for the container to breathe */
     
@@ -88,14 +114,13 @@ Year: 2015
     
     .pager li>a,
     .pager li>span {
-        background: rgb(60, 60, 60);
         border: none;
         border-radius: 0em;
     }
     /* changes the color and width of the blockquote */
     
     blockquote {
-        border-left: 0.25em solid #F48EA5;
+        border-left: 0.25em solid #fff;
     }
     /* makes it so that like and reblog buttons are rendered inline and not block */
     
@@ -108,22 +133,50 @@ Year: 2015
     }
     
     .btn-link {
-        color: #F48EA5;
+        color: #fff;
     }
     
     .btn-link:hover {
-        color: #FAD4DD;
+        color: #fff;
     }
     
     .btn-link:visited {
-        color: #FAD4DD;
+        color: #fff;
     }
     
     .form-control {
         border-radius: 0em;
         border: none;
-        background: #151515;
-        color: #eee;
+        background: #141414;
+        color: #fff;
+    }
+    /* Your new best friend. */
+    
+    .flowey {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        z-index: -1;
+    }
+    
+    .action-box {
+        border: solid 0.5em #FF7F27;
+        color: #FF7F27;
+        background: #000;
+        margin-left: 0.5em;
+        margin-right: 0.5em;
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+        font-size: 0.8em;
+        text-align: center;
+    }
+    
+    .col-md-3 {
+        width: 23%;
+    }
+    
+    .first-box {
+        margin-left: 1em;
     }
     </style>
 </head>
@@ -137,11 +190,19 @@ Year: 2015
                     <li class="post text">
                         {block:Title}
                         <h3><a href="{Permalink}">{Title}</a></h3> {/block:Title}{Body} {block:HasTags}
-                        <p>{block:Tags}
-                            <a href="{TagURL}">#{Tag}</a> {/block:Tags}
+                        <p>
+                            {block:Tags}
+                            <a href="{TagURL}">*{Tag}</a> {/block:Tags}
                         </p>
                         {/block:HasTags}
-                        <hr> {LikeButton size="15"} &nbsp; {NoteCount} &nbsp; {ReblogButton size="15"} &nbsp; rebagel <a href="{Permalink}" class="pull-right">{TimeAgo}</a> {block:PostNotes}
+                        <hr>
+                        <div class="row">
+                            <div class="action-box col-md-3 first-box">&nbsp; {LikeButton size="14"} &nbsp; LIKE</div>
+                            <div class="action-box col-md-3">&nbsp; {ReblogButton size="14"} &nbsp; REBLOG</div>
+                            <div class="action-box col-md-3">{LikeButton size="14"} &nbsp; {NoteCount}</div>
+                            <div class="action-box col-md-3"><a href="{Permalink}">{TimeAgo}</a></div>
+                        </div>
+                        {block:PostNotes}
                         <hr> {PostNotes}{/block:PostNotes}
                     </li>
                     {/block:Text}{block:Photo}
@@ -149,11 +210,19 @@ Year: 2015
                         <img src="{PhotoURL-500}" alt="{PhotoAlt}" class="img-responsive" /> {block:Caption}
                         <div class="caption">{Caption}</div>
                         {/block:Caption}{block:HasTags}
-                        <p>{block:Tags}
-                            <a href="{TagURL}">#{Tag}</a> {/block:Tags}
+                        <p>
+                            {block:Tags}
+                            <a href="{TagURL}">*{Tag}</a> {/block:Tags}
                         </p>
                         {/block:HasTags}
-                        <hr> {LikeButton size="15"} &nbsp; {NoteCount} &nbsp; {ReblogButton size="15"} &nbsp; rebagel <a href="{Permalink}" class="pull-right">{TimeAgo}</a> {block:PostNotes}
+                        <hr>
+                        <div class="row">
+                            <div class="action-box col-md-3 first-box">&nbsp; {LikeButton size="14"} &nbsp; LIKE</div>
+                            <div class="action-box col-md-3">&nbsp; {ReblogButton size="14"} &nbsp; REBLOG</div>
+                            <div class="action-box col-md-3">{LikeButton size="14"} &nbsp; {NoteCount}</div>
+                            <div class="action-box col-md-3"><a href="{Permalink}">{TimeAgo}</a></div>
+                        </div>
+                        {block:PostNotes}
                         <hr> {PostNotes}{/block:PostNotes}
                     </li>
                     {/block:Photo}{block:Panorama}
@@ -162,22 +231,38 @@ Year: 2015
                         <img src="{PhotoURL-Panorama}" alt="{PhotoAlt}" class="img-responsive" /> {LinkCloseTag}{block:Caption}
                         <div class="caption">{Caption}</div>
                         {/block:Caption}{block:HasTags}
-                        <p>{block:Tags}
-                            <a href="{TagURL}">#{Tag}</a> {/block:Tags}
+                        <p>
+                            {block:Tags}
+                            <a href="{TagURL}">*{Tag}</a> {/block:Tags}
                         </p>
                         {/block:HasTags}
-                        <hr> {LikeButton size="15"} &nbsp; {NoteCount} &nbsp; {ReblogButton size="15"} &nbsp; rebagel <a href="{Permalink}" class="pull-right">{TimeAgo}</a> {block:PostNotes}
+                        <hr>
+                        <div class="row">
+                            <div class="action-box col-md-3 first-box">&nbsp; {LikeButton size="14"} &nbsp; LIKE</div>
+                            <div class="action-box col-md-3">&nbsp; {ReblogButton size="14"} &nbsp; REBLOG</div>
+                            <div class="action-box col-md-3">{LikeButton size="14"} &nbsp; {NoteCount}</div>
+                            <div class="action-box col-md-3"><a href="{Permalink}">{TimeAgo}</a></div>
+                        </div>
+                        {block:PostNotes}
                         <hr> {PostNotes}{/block:PostNotes}
                     </li>
                     {/block:Panorama}{block:Photoset}
                     <li class="post photoset">
                         {Photoset-500}{block:Caption}
                         <div class="caption">{Caption}</div> {/block:Caption}{block:HasTags}
-                        <p>{block:Tags}
-                            <a href="{TagURL}">#{Tag}</a> {/block:Tags}
+                        <p>
+                            {block:Tags}
+                            <a href="{TagURL}">*{Tag}</a> {/block:Tags}
                         </p>
                         {/block:HasTags}
-                        <hr> {LikeButton size="15"} &nbsp; {NoteCount} &nbsp; {ReblogButton size="15"} &nbsp; rebagel <a href="{Permalink}" class="pull-right">{TimeAgo}</a> {block:PostNotes}
+                        <hr>
+                        <div class="row">
+                            <div class="action-box col-md-3 first-box">&nbsp; {LikeButton size="14"} &nbsp; LIKE</div>
+                            <div class="action-box col-md-3">&nbsp; {ReblogButton size="14"} &nbsp; REBLOG</div>
+                            <div class="action-box col-md-3">{LikeButton size="14"} &nbsp; {NoteCount}</div>
+                            <div class="action-box col-md-3"><a href="{Permalink}">{TimeAgo}</a></div>
+                        </div>
+                        {block:PostNotes}
                         <hr> {PostNotes}{/block:PostNotes}
                     </li>
                     {/block:Photoset}{block:Quote}
@@ -185,7 +270,7 @@ Year: 2015
                         "{Quote}" {block:Source}
                         <div class="source">{Source}</div>
                         {/block:Source}
-                        <hr> {LikeButton size="15"} &nbsp; {NoteCount} &nbsp; {ReblogButton size="15"} &nbsp; rebagel <a href="{Permalink}" class="pull-right">{TimeAgo}</a> {block:PostNotes}
+                        <hr> {LikeButton size="14"} &nbsp; {NoteCount} &nbsp; {ReblogButton size="14"} &nbsp; rebagel <a href="{Permalink}" class="pull-right">{TimeAgo}</a> {block:PostNotes}
                         <hr> {PostNotes}{/block:PostNotes}
                     </li>
                     {/block:Quote}{block:Link}
@@ -193,7 +278,7 @@ Year: 2015
                         <a href="{URL}" class="link" {Target}>{Name}</a> {block:Description}
                         <div class="description">{Description}</div>
                         {/block:Description}
-                        <hr> {LikeButton size="15"} &nbsp; {NoteCount} &nbsp; {ReblogButton size="15"} &nbsp; rebagel <a href="{Permalink}" class="pull-right">{TimeAgo}</a> {block:PostNotes}
+                        <hr> {LikeButton size="14"} &nbsp; {NoteCount} &nbsp; {ReblogButton size="14"} &nbsp; rebagel <a href="{Permalink}" class="pull-right">{TimeAgo}</a> {block:PostNotes}
                         <hr> {PostNotes}{/block:PostNotes}
                     </li>
                     {/block:Link}{block:Chat}
@@ -208,31 +293,57 @@ Year: 2015
                             </li>
                             {/block:Lines}
                         </ul>{block:HasTags}
-                        <p>{block:Tags}
-                            <a href="{TagURL}">#{Tag}</a> {/block:Tags}
+                        <p>
+                            {block:Tags}
+                            <a href="{TagURL}">*{Tag}</a> {/block:Tags}
                         </p>
                         {/block:HasTags}
-                        <hr> {LikeButton size="15"} &nbsp; {NoteCount} &nbsp; {ReblogButton size="15"} &nbsp; rebagel <a href="{Permalink}" class="pull-right">{TimeAgo}</a> {block:PostNotes}
+                        <hr>
+                        <div class="row">
+                            <div class="action-box col-md-3 first-box">&nbsp; {LikeButton size="14"} &nbsp; LIKE</div>
+                            <div class="action-box col-md-3">&nbsp; {ReblogButton size="14"} &nbsp; REBLOG</div>
+                            <div class="action-box col-md-3">{LikeButton size="14"} &nbsp; {NoteCount}</div>
+                            <div class="action-box col-md-3"><a href="{Permalink}">{TimeAgo}</a></div>
+                        </div>
+                        {block:PostNotes}
                         <hr> {PostNotes}{/block:PostNotes}
                     </li>
                     {/block:Chat}{block:Video}
                     <li class="post video">
                         {Video-500}{block:Caption}
                         <div class="caption">{Caption}</div>
-                        {/block:Caption}
-                        <hr> {LikeButton size="15"} &nbsp; {NoteCount} &nbsp; {ReblogButton size="15"} &nbsp; rebagel <a href="{Permalink}" class="pull-right">{TimeAgo}</a> {block:PostNotes}
-                        <hr> {PostNotes}{/block:PostNotes}
+                        {/block:Caption}{block:HasTags}
+                        <p>
+                            {block:Tags}
+                            <a href="{TagURL}">*{Tag}</a> {/block:Tags}
+                        </p>
+                        {/block:HasTags}
+                        <hr>
+                        <div class="row">
+                            <div class="action-box col-md-3 first-box">&nbsp; {LikeButton size="14"} &nbsp; LIKE</div>
+                            <div class="action-box col-md-3">&nbsp; {ReblogButton size="14"} &nbsp; REBLOG</div>
+                            <div class="action-box col-md-3">{LikeButton size="14"} &nbsp; {NoteCount}</div>
+                            <div class="action-box col-md-3"><a href="{Permalink}">{TimeAgo}</a></div>
+                        </div>
                     </li>
                     {/block:Video}{block:Audio}
                     <li class="post audio">
                         {AudioEmbed}{block:Caption}
                         <div class="caption">{Caption}</div>
                         {/block:Caption}{block:HasTags}
-                        <p>{block:Tags}
-                            <a href="{TagURL}">#{Tag}</a> {/block:Tags}
+                        <p>
+                            {block:Tags}
+                            <a href="{TagURL}">*{Tag}</a> {/block:Tags}
                         </p>
                         {/block:HasTags}
-                        <hr> {LikeButton size="15"} &nbsp; {NoteCount} &nbsp; {ReblogButton size="15"} &nbsp; rebagel <a href="{Permalink}" class="pull-right">{TimeAgo}</a> {block:PostNotes}
+                        <hr>
+                        <div class="row">
+                            <div class="action-box col-md-3 first-box">&nbsp; {LikeButton size="14"} &nbsp; LIKE</div>
+                            <div class="action-box col-md-3">&nbsp; {ReblogButton size="14"} &nbsp; REBLOG</div>
+                            <div class="action-box col-md-3">{LikeButton size="14"} &nbsp; {NoteCount}</div>
+                            <div class="action-box col-md-3"><a href="{Permalink}">{TimeAgo}</a></div>
+                        </div>
+                        {block:PostNotes}
                         <hr> {PostNotes}{/block:PostNotes}
                     </li>
                     {/block:Audio}{/block:Posts}
@@ -251,7 +362,7 @@ Year: 2015
                 </p>
                 {/block:Pagination}
             </div>
-            <div class="col-md-4 sidebar-thing"> <img src="{PortraitURL-128}" alt="" class="img-responsive" /> {block:Description}
+            <div class="col-md-4 sidebar-thing"> <img src="{PortraitURL-128}" alt="" class="img-responsive text-center" /> {block:Description}
                 <p id="description">{Description}</p>
                 {/block:Description} {block:HasPages} {block:Pages}
                 <a href="{URL}">{Label}</a>
@@ -264,12 +375,15 @@ Year: 2015
                     </div>
                     <button type="submit" class="btn btn-link">search</button>
                 </form>
-                <br><a href="http://github.com/thattacoguy/lion">theme</a>
+                <hr>
+                <a href="http://github.com/thattacoguy/flower">theme</a>
+                <br>
                 <br>
             </div>
         </div>
     </div>
     <p class="text-center">flower by <a href="http://github.com/thattacoguy/flower">Daniel Gallegos</a></p>
+    <img src="http://i.imgur.com/qiu7jND.png" alt="" class="flowey">
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
