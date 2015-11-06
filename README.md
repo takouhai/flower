@@ -23,7 +23,7 @@ A Tumblr theme based off of Undertale, a game that I've been obsessed with for a
 ###todo
 
  - [ ] provide better optimization for smaller viewports (as of right now, it only supports 1280x720 screens)
- * Issue: [#1](issues/1)
+ * Issue: [#1](/../../issues/1)
  - [x] redesign the UI to better reflect what Undertale actually looks like
 
 flower is licensed under MIT.
